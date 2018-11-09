@@ -37,8 +37,46 @@ let find_path (graph:ford_graph) origin destination=
 			in
 			try_path arcs
 	in
-		loop origin [] []	
+		loop origin [origin] []	
 
+let get_path_max_value (graph:ford_graph) path=
+	let rec loop pathi= match pathi with
+		| a::b::rest -> 
+			let arc=find_arc graph a b
+			in
+				begin
+				match arc with
+					|Some(actual_value,capacity_value)-> (capacity_value-actual_value)::(loop (b::rest))
+					|None -> failwith "Error, path is not valid in graph"
+				end
+		| _ -> []
+	in 
+	let path_values=loop path
+	in
+		try 
+			List.fold_left (fun x y -> Pervasives.min x y) (List.hd path_values) path_values
+		with 
+			| hd->0
+
+let update_ford_graph (graph:ford_graph) path=
+	(* value >=0 *)
+	let value=get_path_max_value graph path
+	in
+	let rec loop pathi acc=match pathi with
+		|a::b::rest -> 
+			let arc_actu=find_arc graph a b
+			in
+			begin
+			match arc_actu with
+				|Some(actu,cap)->
+					let nvalue=actu+value 
+					in loop (b::rest) (add_arc acc a b (nvalue,cap))
+				|None -> failwith "Error, path is not valid"
+			end
+		| _ -> acc
+	in
+	loop path graph
+	
 let run (graph:ford_graph)=
 	let chemin=find_path graph "4" "1"
 	in

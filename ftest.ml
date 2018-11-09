@@ -20,7 +20,7 @@ let () =
   let graph = Gfile.from_file infile in
 
   (* Rewrite the graph that has been read. *)
-  let () = Gfile.write_file outfile graph in
+  let () = Gfile.export outfile graph in
 
   ()
 

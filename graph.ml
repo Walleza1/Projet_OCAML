@@ -42,10 +42,10 @@ let v_iter gr f = List.iter (fun (id, out) -> f id out) gr
 let v_fold gr f acu = List.fold_left (fun acu (id, out) -> f acu id out) acu gr
 
 let map gr f =
-  let f_node (id,a)= (id,(f a))
+  let f_arc (id,a)= (id,(f a))
   in
-  let f_arc (node,out_arcs)= (node,(List.map f_node out_arcs))
+  let f_graph (node,out_arcs) = (node,(List.map f_arc out_arcs))
   in
-    List.map f_arc gr
+    List.map f_graph gr
 ;;
 

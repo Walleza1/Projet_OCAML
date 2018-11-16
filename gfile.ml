@@ -72,12 +72,12 @@ let from_file path =
   close_in infile ;
   final_graph
   
-let export path graph=
+let export path graph (s:string)=
   (* Open a write-file. *)
   let ff = open_out path in
 
   (* Write in this file. *)
-  fprintf ff "digraph this_graph{\n" ;
+  fprintf ff "strict digraph this_graph{\n" ;
   fprintf ff "rankdir=LR;\n" ;
   fprintf ff "size=\"8,5\";\n" ;
   fprintf ff "node [shape=circle];\n" ;
@@ -85,6 +85,7 @@ let export path graph=
   (* Write all arcs *)
   v_iter graph (fun id out -> List.iter (fun (id2, lbl) -> fprintf ff "%s -> %s [label = \"%s\"];\n" id id2 lbl) out) ;
   
+  fprintf ff "%s" s;
   fprintf ff "}\n" ;
   
   close_out ff ;

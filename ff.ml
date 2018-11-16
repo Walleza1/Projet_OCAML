@@ -20,7 +20,7 @@ let value_of_arc (id,(actu,cap)) = actu
 ;;
 
 
-(**Take a ford_graph and find a path *)
+(**Take a ford_graph and finda path *)
 let find_path (graph:ford_graph) origin destination=
 	let rec loop start acc visited =
 		if start = destination then
@@ -98,15 +98,18 @@ let sum_outarcs_value graph id =
 		List.fold_left (+) 0 (List.map value_of_arc arcs)
 ;;
 
-(**Takes a ford graph, an origin and destination node, and runs ford-fulkerson on it, returning the max flow value 
+(**Takes a ford graph, an origin and destination node id, and runs ford-fulkerson on it, returning the max flow value *)
 let run (graph:ford_graph) origin dest =
-	let available_path = find_path graph origin dest
+	let rec loop gr = 
+	let path=find_path graph origin dest in
+	match (path) with
+		|Some(chemin) -> loop (update_ford_graph gr chemin)
+		|None -> sum_outarcs_value gr origin
 	in
-	let rec loop path = match path with
-	loop path graph
-		|None -> 
+	loop graph
 ;;
-*)
+
+
 
 (* Create a string graph *)
 let toString graph = map graph (fun (a,b) -> (string_of_int a)^"/"^(string_of_int b))	

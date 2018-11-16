@@ -20,6 +20,8 @@ let () =
   (* Open file *)
   let graph = Gfile.from_file infile in
 
+  
+
   (* Rewrite the graph that has been read. *)
   let () = Gfile.export outfile graph in
 

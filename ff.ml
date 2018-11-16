@@ -101,7 +101,8 @@ let sum_outarcs_value graph id =
 (**Takes a ford graph, an origin and destination node id, and runs ford-fulkerson on it, returning the max flow value *)
 let run (graph:ford_graph) origin dest =
 	let rec loop gr = 
-	let path=find_path graph origin dest in
+	(* Tu avais utilisé graph du coup il partait toujours du graph initial donc toujours un chemin donc stack overflow *)
+	let path=find_path gr origin dest in
 	match (path) with
 		|Some(chemin) -> loop (update_ford_graph gr chemin)
 		|None -> sum_outarcs_value gr origin
@@ -112,5 +113,5 @@ let run (graph:ford_graph) origin dest =
 
 
 (* Create a string graph *)
-let toString graph = map graph (fun (a,b) -> (string_of_int a)^"/"^(string_of_int b))	
+let toString (graph:ford_graph) = map graph (fun (a,b) -> (string_of_int a)^"/"^(string_of_int b))	
 

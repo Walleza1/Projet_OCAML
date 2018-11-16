@@ -9,6 +9,6 @@ val init: int graph -> ford_graph
 (************** FORD-FULKERSON RUN **************)
 
 (* Runs Ford-Fulkerson algorithm with a ford graph *)
-(*val run : ford_graph -> int *) 
+val run : ford_graph -> id -> id -> int
 
 val toString: ford_graph -> string graph

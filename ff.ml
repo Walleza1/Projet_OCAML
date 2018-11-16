@@ -4,18 +4,25 @@ type ford_graph = (int*int) graph
 
 type path = id list
 
-(**************  CONSTRUCTORS  **************)
 (** Function init **)
 let init graph = map graph (fun x -> (0,x))
+;;
+
 
 (** Boolean to test if this arc is available *)
 let is_arc_available (id,(actu,cap)) =
-	if actu < cap then true else false
+	actu < cap
+;;
+
+
+(** Returns actual flow value of an arc *)
+let value_of_arc (id,(actu,cap)) = actu
+;;
 
 
 (**Take a ford_graph and find a path *)
 let find_path (graph:ford_graph) origin destination=
-	let rec loop start acc visited=
+	let rec loop start acc visited =
 		if start = destination then
 			Some (List.rev acc)
 		else 
@@ -38,7 +45,10 @@ let find_path (graph:ford_graph) origin destination=
 			try_path arcs
 	in
 		loop origin [origin] []	
+;;
 
+
+(**Get the maximum flow value available (total capacity - actual) in a path *)
 let get_path_max_value (graph:ford_graph) path=
 	let rec loop pathi= match pathi with
 		| a::b::rest -> 
@@ -46,7 +56,7 @@ let get_path_max_value (graph:ford_graph) path=
 			in
 				begin
 				match arc with
-					|Some(actual_value,capacity_value)-> (capacity_value-actual_value)::(loop (b::rest))
+					|Some(actu,cap)-> (cap-actu)::(loop (b::rest))
 					|None -> failwith "Error, path is not valid in graph"
 				end
 		| _ -> []
@@ -57,12 +67,15 @@ let get_path_max_value (graph:ford_graph) path=
 			List.fold_left (fun x y -> Pervasives.min x y) (List.hd path_values) path_values
 		with 
 			| hd->0
+;;
 
+
+(**Get the maximum flow value available (total capacity - actual) in a path *)
 let update_ford_graph (graph:ford_graph) path=
 	(* value >=0 *)
 	let value=get_path_max_value graph path
 	in
-	let rec loop pathi acc=match pathi with
+	let rec loop pathi acc = match pathi with
 		|a::b::rest -> 
 			let arc_actu=find_arc graph a b
 			in
@@ -76,13 +89,24 @@ let update_ford_graph (graph:ford_graph) path=
 		| _ -> acc
 	in
 	loop path graph
-	
-let run (graph:ford_graph)=
-	let chemin=find_path graph "4" "1"
+;;
+
+(**Sums the flow value of all outgoing arcs of node id *)
+let sum_outarcs_value graph id = 
+	let arcs = out_arcs graph id 
+	in 
+		List.fold_left (+) 0 (List.map value_of_arc arcs)
+;;
+
+(**Takes a ford graph, an origin and destination node, and runs ford-fulkerson on it, returning the max flow value 
+let run (graph:ford_graph) origin dest =
+	let available_path = find_path graph origin dest
 	in
-	match chemin with
-		| Some(a) -> List.iter (fun x -> Printf.printf "%s - " x;Printf.printf "%!") a;4
-		| None -> 2
+	let rec loop path = match path with
+	loop path graph
+		|None -> 
+;;
+*)
 
 (* Create a string graph *)
 let toString graph = map graph (fun (a,b) -> (string_of_int a)^"/"^(string_of_int b))	

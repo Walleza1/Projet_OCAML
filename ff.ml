@@ -104,7 +104,13 @@ let run (graph:ford_graph) origin dest =
 	(* Tu avais utilisé graph du coup il partait toujours du graph initial donc toujours un chemin donc stack overflow *)
 	let path=find_path gr origin dest in
 	match (path) with
-		|Some(chemin) -> loop (update_ford_graph gr chemin)
+		|Some(chemin) -> 
+			begin
+			(* Ajout d'un match case quand le chemin n'est composé que d'un élément ou est vide. Si on demande origin = dest il renvoit le chemine [origin] *)
+				match chemin with
+					|a::b::rest ->loop (update_ford_graph gr chemin)
+					| _ -> sum_outarcs_value gr origin
+			end
 		|None -> sum_outarcs_value gr origin
 	in
 	loop graph

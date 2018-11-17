@@ -6,19 +6,30 @@ let graph2=init (Graph.map (Gfile.from_file "Template_Graphs/graph2") int_of_str
 let graph3=init (Graph.map (Gfile.from_file "Template_Graphs/graph3") int_of_string)
 let graph4=init (Graph.map (Gfile.from_file "Template_Graphs/graph4") int_of_string)
 
-let ()=
-	let res1=Ff.run graph1 "0" "3" 
+let test_run (gr:ford_graph) gr_number origin dest expected=
+	let res=Ff.run gr origin dest
 	in
-	let res2=Ff.run graph2 "0" "5" 
-	in
-	let res3=Ff.run graph3 "0" "3" 
-	in
-	let res4=Ff.run graph4 "0" "5" 
-	in
-	let ()=
-		Printf.printf "Graph 1\n Résultat attentu 6 | obtenu :  %d %!\n" res1;
-		Printf.printf "Graph 2\n Résultat attentu 7 | obtenu :  %d %!\n" res2;
-		Printf.printf "Graph 3\n Résultat attentu 25 | obtenu :  %d %!\n" res3;
-		Printf.printf "Graph 4\n Résultat attentu 23 | obtenu :  %d %!\n" res4;
-	in
-	()
+	if res=expected then Printf.printf "Test OK ! \n%!" else Printf.printf "Test failed graph %d : ori %s - dest %s - res %d - expected %d"  gr_number origin dest res expected
+
+let main ()=
+	test_run graph1 1 "0" "0" 0;
+	test_run graph1 1 "0" "1" 2;
+	test_run graph1 1 "0" "2" 6;
+	test_run graph1 1 "0" "3" 6;
+	test_run graph1 1 "1" "0" 0;
+	test_run graph1 1 "1" "1" 0;
+	test_run graph1 1 "1" "2" 3;
+	test_run graph1 1 "1" "3" 4;
+	test_run graph1 1 "2" "0" 0;
+	test_run graph1 1 "2" "1" 0;
+	test_run graph1 1 "2" "2" 0;
+	test_run graph1 1 "2" "3" 5;
+	test_run graph1 1 "3" "0" 0;
+	test_run graph1 1 "3" "1" 0;
+	test_run graph1 1 "3" "2" 0;
+	test_run graph1 1 "3" "3" 0;
+	test_run graph2 2 "0" "5" 7;
+	test_run graph3 3 "0" "3" 25;
+	test_run graph4 4 "0" "5" 23
+
+let ()= main ()

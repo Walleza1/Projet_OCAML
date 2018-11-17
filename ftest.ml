@@ -19,12 +19,14 @@ let () =
 
   (* Open file *)
   let graph = Gfile.from_file infile in
-
-  
-
-  (* Rewrite the graph that has been read. *)
-  let () = Gfile.export outfile graph in
-
-  ()
-
-
+	let fg=Ff.init (Graph.map graph int_of_string)
+	in
+	let path_i=Ff.find_path fg "4" "1"
+	in
+	match path_i with
+		|Some(c) -> 
+			(* Rewrite the graph that has been read. *)
+			let () = Ff.export_path outfile fg "4" "1" c in
+			()
+		|None -> let ()=Printf.printf "Failed %!" in ()
+ 

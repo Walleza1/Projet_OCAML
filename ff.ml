@@ -1,8 +1,9 @@
 open Graph
+open Gfile
 
 type ford_graph = (int*int) graph
 
-type path = id list
+type ford_path = id list
 
 (** Function init **)
 let init graph = map graph (fun x -> (0,x))
@@ -49,7 +50,7 @@ let find_path (graph:ford_graph) origin destination=
 
 
 (**Get the maximum flow value available (total capacity - actual) in a path *)
-let get_path_max_value (graph:ford_graph) path=
+let get_path_max_value (graph:ford_graph) (path:ford_path)=
 	let rec loop pathi= match pathi with
 		| a::b::rest -> 
 			let arc=find_arc graph a b
@@ -71,7 +72,7 @@ let get_path_max_value (graph:ford_graph) path=
 
 
 (**Get the maximum flow value available (total capacity - actual) in a path *)
-let update_ford_graph (graph:ford_graph) path=
+let update_ford_graph (graph:ford_graph) (path:ford_path)=
 	(* value >=0 *)
 	let value=get_path_max_value graph path
 	in
@@ -120,4 +121,29 @@ let run (graph:ford_graph) origin dest =
 
 (* Create a string graph *)
 let toString (graph:ford_graph) = map graph (fun (a,b) -> (string_of_int a)^"/"^(string_of_int b))	
+
+let export path (graph:ford_graph) origin destination=
+ let (o,d)=((node_exists graph origin),(node_exists graph destination))
+	in match (o,d) with
+	|(true,true)-> 
+		let s=origin^"[fillcolor=green,style=filled];\n"^destination^"[fillcolor=orange,style=filled]\n"
+			in
+		Gfile.export path (toString graph) s
+	|(_,_) -> raise (Graph_error("Nodes aren't present in graph"))
+	 
+
+let export_path file_path (graph:ford_graph) origin destination (path:ford_path)=
+	let (o,d)=((node_exists graph origin),(node_exists graph destination))
+	in match (o,d) with
+		|(true,true)-> 
+			let rec loop pathi acc= match pathi with
+				|a::b::rest -> loop (b::rest) (acc^a^"->"^b^" [color=red,fontcolor=red];\n")
+				| _ -> acc
+			in
+			let edge=loop path ""
+			in
+			let s=origin^"[fillcolor=green,style=filled];\n"^destination^"[fillcolor=orange,style=filled]\n"
+			in
+			Gfile.export file_path (toString graph) (s^edge)
+		|(_,_) -> raise (Graph_error("Nodes aren't present in graph"))
 

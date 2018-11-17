@@ -4,7 +4,7 @@ All of theses files are extracted from [www-m9.ma.tum.de](https://www-m9.ma.tum.
 
 # Values 
 
-## Graph 1
+## Graph 1
 
 |Origin|Destination|Max-Value|
 |:----:|:---------:|:-------:|
@@ -25,7 +25,7 @@ All of theses files are extracted from [www-m9.ma.tum.de](https://www-m9.ma.tum.
 |3|0|0|
 |3|0|0|
 
-## Graph 2
+## Graph 2
 
 |Origin|Destination|Max-Value|
 |:----:|:---------:|:-------:|

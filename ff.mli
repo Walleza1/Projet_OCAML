@@ -21,3 +21,5 @@ val find_path: ford_graph -> id -> id -> ford_path option
 val export: path -> ford_graph -> id ->id ->unit
 
 val export_path : path -> ford_graph -> id -> id -> ford_path -> unit
+
+val run_and_print : path-> ford_graph -> id -> id -> int

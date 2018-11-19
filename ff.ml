@@ -147,3 +147,24 @@ let export_path file_path (graph:ford_graph) origin destination (path:ford_path)
 			Gfile.export file_path (toString graph) (s^edge)
 		|(_,_) -> raise (Graph_error("Nodes aren't present in graph"))
 
+
+(**Takes a ford graph, an origin and destination node id, and runs ford-fulkerson on it, returning the max flow value. At the end render dotfile at path **)
+let run_and_print file_path (graph:ford_graph) origin dest =
+	let rec loop gr = 
+	(* Tu avais utilisé graph du coup il partait toujours du graph initial donc toujours un chemin donc stack overflow *)
+	let path=find_path gr origin dest in
+	match (path) with
+		|Some(chemin) -> 
+			begin
+			(* Ajout d'un match case quand le chemin n'est composé que d'un élément ou est vide. Si on demande origin = dest il renvoit le chemine [origin] *)
+				match chemin with
+					|a::b::rest ->loop (update_ford_graph gr chemin)
+					| _ -> export file_path gr origin dest ;sum_outarcs_value gr origin
+			end
+		|None -> sum_outarcs_value gr origin
+	in
+	loop graph
+;;
+
+
+

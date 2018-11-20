@@ -7,9 +7,9 @@ let graph3=init (Graph.map (Gfile.from_file "Template_Graphs/graph3") int_of_str
 let graph4=init (Graph.map (Gfile.from_file "Template_Graphs/graph4") int_of_string)
 
 let test_run (gr:ford_graph) gr_number origin dest expected=
-	let res=Ff.run gr origin dest
+	let res=Ff.run_ecart gr origin dest
 	in
-	if res=expected then Printf.printf "Test OK ! \n%!" else Printf.printf "Test failed graph %d : ori %s - dest %s - res %d - expected %d"  gr_number origin dest res expected
+	if res=expected then Printf.printf "Test OK Graph%d ori %s dest %s ! \n%!" gr_number origin dest else Printf.printf "Test failed graph %d : ori %s - dest %s - res %d - expected %d\n %!"  gr_number origin dest res expected
 
 let main ()=
 	test_run graph1 1 "0" "0" 0;

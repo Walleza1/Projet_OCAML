@@ -78,8 +78,6 @@ let to_fold ecart_g id l=
 
 let create_ecart_graph (graph:ford_graph)=Graph.v_fold (graph) to_fold (Graph.empty_graph)
 
-
-
 (**Take a ford_ecart_graph and finda path *)
 let find_path_ecart (graph:ford_ecart_graph) origin destination=
 	let rec loop start (acc:id list) visited =
@@ -92,7 +90,7 @@ let find_path_ecart (graph:ford_ecart_graph) origin destination=
 				| [] -> None
 				|(id,(actu,cap))::rest-> 
 					if List.mem id visited then
-						None
+						try_path rest
 					else
 						let result=loop id (id::acc) (id::visited)
 						in 
@@ -147,7 +145,7 @@ let update_ford_graph_ecart (graph:ford_graph) path=
 								in
 									begin
 										match arc_actu with
-											|Some(actu,cap)->let nvalue=actu-value in loop (b::rest) (add_arc acc a b (nvalue,cap))
+											|Some(actu,cap)->let nvalue=actu-value in loop (b::rest) (add_arc acc b a (nvalue,cap))
 											|None -> Printf.printf "arc %s - %s " a b ;failwith "Error, arc reverse is not valid"
 									end
 							else

@@ -9,7 +9,7 @@ type ford_ecart_graph = (int*bool) graph
 type ford_path = id list
 
 (** Function init **)
-let init graph = map graph (fun x y -> (0,x,y))
+let init graph = map graph (fun (x,y) -> (0,x,y))
 ;;
 
 (** Returns actual flow value of an arc *)

@@ -15,7 +15,8 @@ let () =
   in
   (* Open file *)
   let graph = Gfile.from_file infile in
-	let fg=Ff.init (Graph.map graph int_of_string)
+  let double_int = (fun (x,y) -> (int_of_string x, int_of_string y)) in
+	let fg=Ff.init (Graph.map graph double_int)
 	in
 	let result = run fg origin dest
 	in

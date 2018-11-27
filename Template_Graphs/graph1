@@ -4,16 +4,16 @@ s 3
 
 c basket 5
 c tennis 2
-c manger 4
+c golf 4
 
 p 1 1 tennis
 p 1 2 basket
-p 1 3 manger
+p 1 3 golf
 
-p 2 1 manger
+p 2 1 golf
 p 2 2 tennis
 p 2 3 basket
 
 p 3 1 tennis
-p 3 2 manger
+p 3 2 golf
 p 3 3 basket

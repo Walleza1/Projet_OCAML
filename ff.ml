@@ -240,7 +240,7 @@ let run_ecart (graph:ford_graph) origin dest =
 
 
 (* Create a string graph *)
-let toString (graph:ford_graph) = map graph (fun (a,b,c) -> (string_of_int a)^"/"^(string_of_int b)^"/cost : "^(string_of_int c))  
+let toString (graph:ford_graph) = map graph (fun (a,b,c) -> (string_of_int a)^"/"^(string_of_int b)^" : "^(string_of_int c))  
 
 
   

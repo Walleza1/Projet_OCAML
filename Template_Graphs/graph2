@@ -1,19 +1,24 @@
-s 1
-s 2
-s 3
+s Jérôme
+s Vincent
+s Laura
+s Constance
 
-c basket 5
+c basket 2
 c tennis 2
-c manger 4
+c golf 2
 
-p 1 1 tennis
-p 1 2 basket
-p 1 3 manger
+p Jérôme 1 golf
+p Jérôme 2 tennis
+p Jérôme 3 basket
 
-p 2 1 manger
-p 2 2 tennis
-p 2 3 basket
+p Vincent 1 tennis
+p Vincent 2 basket
+p Vincent 3 golf
 
-p 3 1 tennis
-p 3 2 manger
-p 3 3 basket
+p Laura 1 golf
+p Laura 2 basket
+p Laura 3 tennis
+
+p Constance 1 golf
+p Constance 2 tennis
+p Constance 3 basket

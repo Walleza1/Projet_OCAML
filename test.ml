@@ -1,9 +1,13 @@
 open Graph
 open Ff
 
+(** Graph1 : non realistic graph, only testing validity of basic functions*)
 let graph1= Ff.from_file_ford_graph "Template_Graphs/graph1" 
+(** Graph2 : realistic example with a few students*)
 let graph2= Ff.from_file_ford_graph "Template_Graphs/graph2" 
+(** Graph3 : realistic example with a realistic number of students (approx 40)*)
 let graph3= Ff.from_file_ford_graph "Template_Graphs/graph3" 
+(** Graph4 : performance based graph, huge number of students*)
 let graph4= Ff.from_file_ford_graph "Template_Graphs/graph4" 
 
 let test_run (gr:ford_graph) gr_number origin dest expected=

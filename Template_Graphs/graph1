@@ -1,19 +1,19 @@
-s 1
-s 2
-s 3
+s Vincent
+s Jérôme
+s Didier
 
-c basket 5
+c basket 2
 c tennis 2
-c golf 4
+c golf 2
 
-p 1 1 tennis
-p 1 2 basket
-p 1 3 golf
+p Vincent 1 tennis
+p Vincent 2 basket
+p Vincent 3 golf
 
-p 2 1 golf
-p 2 2 tennis
-p 2 3 basket
+p Jérôme 1 golf
+p Jérôme 2 tennis
+p Jérôme 3 basket
 
-p 3 1 tennis
-p 3 2 golf
-p 3 3 basket
+p Didier 1 tennis
+p Didier 2 golf
+p Didier 3 basket

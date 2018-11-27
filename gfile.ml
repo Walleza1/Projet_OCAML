@@ -80,7 +80,7 @@ let export path graph (s:string)=
   fprintf ff "strict digraph this_graph{\n" ;
   fprintf ff "rankdir=LR;\n" ;
   fprintf ff "size=\"8,5\";\n" ;
-  fprintf ff "graph [pad=\"0.5\", nodesep=\"0.5\", ranksep=\"2\"]";
+  fprintf ff "graph [pad=\"0.5\", nodesep=\"0.5\", dpi = 800,ranksep=\"2\"]";
   fprintf ff "node [shape=circle];\n" ;
 
   (* Write all arcs *)

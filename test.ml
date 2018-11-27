@@ -16,7 +16,17 @@ let test_run (gr:ford_graph) gr_number origin dest expected=
 	if res=expected then Printf.printf "Test OK Graph%d ori %s dest %s ! \n%!" gr_number origin dest else Printf.printf "Test failed graph %d : ori %s - dest %s - res %d - expected %d\n %!"  gr_number origin dest res expected
 
 let main ()=
-	test_run graph1 1 "1" "1" 0;
-	test_run graph1 1 "1" "2" 0
+
+	test_run graph1 1 "Didier" "tennis" 1;
+	test_run graph1 1 "Didier" "golf" 0;
+	test_run graph1 1 "Didier" "basket" 0;
+
+	test_run graph1 1 "Jérôme" "tennis" 0;
+	test_run graph1 1 "Jérôme" "golf" 1;
+	test_run graph1 1 "Jérôme" "basket" 0;
+
+	test_run graph1 1 "Vincent" "tennis" 1;
+	test_run graph1 1 "Vincent" "golf" 0;
+	test_run graph1 1 "Vincent" "basket" 0
 
 let ()= main ()

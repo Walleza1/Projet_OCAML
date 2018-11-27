@@ -39,7 +39,8 @@ let from_file_ford_graph path =
       let graph2 =
       (* Ignore empty lines *)
         if line = "" then graph
-      (* The first character of a line determines its content : v or e.
+      (* The first character of a line determines its content : 
+      s for student, c for class, p for preference
        * Lines not starting with v or e are ignored. *)
         else match line.[0] with
           | 's' -> read_node_ford graph line true

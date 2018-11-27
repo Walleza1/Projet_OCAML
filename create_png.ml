@@ -1,10 +1,10 @@
 open Graph
 open Ff
 
-let graph1=init (Graph.map (Gfile.from_file "Template_Graphs/graph1") int_of_string)
-let graph2=init (Graph.map (Gfile.from_file "Template_Graphs/graph2") int_of_string)
-let graph3=init (Graph.map (Gfile.from_file "Template_Graphs/graph3") int_of_string)
-let graph4=init (Graph.map (Gfile.from_file "Template_Graphs/graph4") int_of_string)
+let graph1= Ff.from_file_ford_graph "Template_Graphs/graph1" 
+let graph2= Ff.from_file_ford_graph "Template_Graphs/graph2" 
+let graph3= Ff.from_file_ford_graph "Template_Graphs/graph3" 
+let graph4= Ff.from_file_ford_graph "Template_Graphs/graph4" 
 
 
 let ()=

@@ -3,7 +3,7 @@ open Graph
 (** Actu, Cap, Cost*)
 type ford_graph = (int*int*int) graph
 
-type ford_ecart_graph = (int*bool) graph
+type ford_ecart_graph = (int*bool*int) graph
 
 type ford_path = id list
 
@@ -88,7 +88,7 @@ let to_fold ecart_g id l=
             |(cap,0)->
               let graph_res=
                 try
-                  add_arc gr nid id (cap,true)
+                  add_arc gr nid id (cap,true,1)
                 with
                   |Graph_error(e)->gr
               in
@@ -96,7 +96,7 @@ let to_fold ecart_g id l=
             |(0,available)->
               let graph_res=
                 try
-                  add_arc gr id nid (available,false)
+                  add_arc gr id nid (available,false,1)
                 with
                   |Graph_error(e)->gr
               in
@@ -104,13 +104,13 @@ let to_fold ecart_g id l=
             |(cap,available)->
               let graph_arc_right=
                 try
-                  add_arc gr id nid (available,false)
+                  add_arc gr id nid (available,false,1)
                 with
                   | Graph_error(e)->gr
               in
               let graph_res=
                 try
-                  add_arc graph_arc_right nid id (cap,true)
+                  add_arc graph_arc_right nid id (cap,true,1)
                 with
                   |Graph_error(e)->graph_arc_right
               in
@@ -133,7 +133,7 @@ let find_path_ecart (graph:ford_ecart_graph) origin destination=
       in
       let rec try_path list_arc=match list_arc with
         | [] -> None
-        |(id,(actu,cap))::rest-> 
+        |(id,(actu,cap,_))::rest-> 
           if List.mem id visited then
             try_path rest
           else
@@ -157,7 +157,7 @@ let get_path_max_value_ecart (graph:ford_ecart_graph) path=
       in
         begin
           match arc with
-            |Some(value,bol)-> (value)::(loop (b::rest))
+            |Some(value,bol,_)-> (value)::(loop (b::rest))
             |None -> failwith "Error, path is not valid in graph"
         end
     | _ -> []
@@ -184,7 +184,7 @@ let update_ford_graph_ecart (graph:ford_graph) path=
       in
         begin
           match arc_ecart with
-            |Some(value_arc,is_reverse)->
+            |Some(value_arc,is_reverse,_)->
               if is_reverse then
                 let arc_actu=find_arc graph b a
                 in
@@ -249,23 +249,4 @@ let export_ford file_path (graph) origin destination=
   in
   Gfile.export file_path (toString graph) s
 
-
-
-  
-(**let run_and_print file_path (graph:ford_graph) origin dest =
-      let rec loop gr = 
-        let gr_ecart=create_ecart_graph gr
-        in
-        let path=find_path_ecart gr_ecart origin dest in
-      match (path) with
-      |Some(chemin) -> 
-          begin
-          (* Ajout d'un match case quand le chemin n'est composé que d'un élément ou est vide. Si on demande origin = dest il renvoit le chemine [origin] *)
-            match chemin with
-              |a::b::rest ->loop (update_ford_graph_ecart gr chemin)
-              | _ -> Gfile.export_ford_path file_path gr origin dest ;sum_outarcs_value gr origin
-          end
-        |None -> sum_outarcs_value gr origin
-      in
-      loop graph
-    ;;**)
+ 

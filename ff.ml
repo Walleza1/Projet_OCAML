@@ -313,7 +313,9 @@ let bellmand_ecart (gr:ford_ecart_graph) origin dest=
 
 
 (**Takes a ford graph, an origin and destination node id, and runs ford-fulkerson on it, returning the max flow value *)
-let run_ecart_bellmand (graph:ford_graph) origin dest =
+let run_max_flow_min_cost outfile (graph:ford_graph) =
+  let origin = "s" in
+  let dest = "p" in
   let rec loop gr = 
     let gr_ecart=create_ecart_graph gr
   in
@@ -324,9 +326,9 @@ let run_ecart_bellmand (graph:ford_graph) origin dest =
         (* Ajout d'un match case quand le chemin n'est composé que d'un élément ou est vide. Si on demande origin = dest il renvoit le chemine [origin] *)
           match chemin with
             |a::b::rest ->loop (update_ford_graph_ecart gr chemin)
-            | _ -> Gfile.export "/home/kompe/Bureau/Projet/Projet_OCAML/graph1_res.dot" (toString gr) "" ;sum_outarcs_value gr origin
+            | _ -> Gfile.export outfile (toString gr) "" ;sum_outarcs_value gr origin
         end
-      |None ->Gfile.export "/home/kompe/Bureau/Projet/Projet_OCAML/graph1_res.dot" (toString gr) "" ; sum_outarcs_value gr origin
+      |None ->Gfile.export outfile (toString gr) "" ; sum_outarcs_value gr origin
   in
     loop graph
 ;;

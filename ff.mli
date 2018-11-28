@@ -17,6 +17,8 @@ val create_ecart_graph: ford_graph -> ford_ecart_graph
 (** Runs Ford-Fulkerson algorithm with a ford graph **)
 val run_ecart : ford_graph -> id -> id -> int
 
+val run_max_flow_min_cost : string -> ford_graph -> int
+
 (** Exports functions **)
 val toString: ford_graph -> string graph
 

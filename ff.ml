@@ -249,4 +249,85 @@ let export_ford file_path (graph) origin destination=
   in
   Gfile.export file_path (toString graph) s
 
- 
+let bellmand_ecart (gr:ford_ecart_graph) origin dest=
+  let size_graph = size gr
+  in
+  let rec setval (id,pred,aval) li = match li with
+    |(nid,npred,nval)::rest-> if nid=id then (id,pred,aval)::(setval (id,pred,aval) rest) else (nid,npred,nval)::(setval (id,pred,aval) rest)
+    |[]->[]
+  in
+  let rec gen_hash acc id (arcs:'a out_arcs)=
+    let nvalue=if id=origin then 0 else 100000
+    in
+      (id,"undefined",nvalue)::acc
+  in
+  let hash=v_fold gr gen_hash []
+  in
+  let find_node li id=List.find (fun (nid,npred,nval)->nid=id) li
+  in
+  let build_path li=
+    let rec loop acc node=
+      let (id,pred,nval)=find_node li node
+      in
+        if id=origin then
+          Some(id::acc)
+        else
+          begin
+            match (id,pred,nval) with
+              |(_,"undefined",_)->None
+              |(id,pred,nval)->loop (id::acc) pred
+          end
+    in
+      loop [] dest
+  in
+  let update_next lis (id,pred,aval)=
+    Printf.printf "Node %s - \n%!" id;
+    let output_arcs=out_arcs gr id
+    in
+    let rec loop acc arcs=match arcs with
+      |(next_node_id,(next_cap,is_reverse,next_node_cost))::rest-> 
+        let ncost=aval+next_node_cost
+        in  
+        let (_,actual_pred,actual_val)=find_node acc next_node_id
+        in 
+          Printf.printf "Next_node %s cost %d ncost %d\n%!" next_node_id actual_val ncost ;
+          if ncost < actual_val then
+            loop (setval (next_node_id,id,ncost) acc) rest
+          else
+            loop acc rest
+      |[]->acc
+    in
+      loop lis output_arcs
+  in
+  let rec update acc li = match li with
+    | (id,pred,aval)::rest -> update (update_next acc (id,pred,aval)) rest
+    | []->acc
+  in
+  let rec loop acc n=match n with
+    | 0 -> acc
+    |k -> Printf.printf "__________\n%!" ;loop (update acc acc) (k-1)
+  in
+  let final_hash=loop hash size_graph
+  in
+    build_path final_hash
+
+
+(**Takes a ford graph, an origin and destination node id, and runs ford-fulkerson on it, returning the max flow value *)
+let run_ecart_bellmand (graph:ford_graph) origin dest =
+  let rec loop gr = 
+    let gr_ecart=create_ecart_graph gr
+  in
+  let path=bellmand_ecart gr_ecart origin dest in
+    match (path) with
+      |Some(chemin) -> 
+        begin
+        (* Ajout d'un match case quand le chemin n'est composé que d'un élément ou est vide. Si on demande origin = dest il renvoit le chemine [origin] *)
+          match chemin with
+            |a::b::rest ->loop (update_ford_graph_ecart gr chemin)
+            | _ -> Gfile.export "/home/kompe/Bureau/Projet/Projet_OCAML/graph1_res.dot" (toString gr) "" ;sum_outarcs_value gr origin
+        end
+      |None ->Gfile.export "/home/kompe/Bureau/Projet/Projet_OCAML/graph1_res.dot" (toString gr) "" ; sum_outarcs_value gr origin
+  in
+    loop graph
+;;
+

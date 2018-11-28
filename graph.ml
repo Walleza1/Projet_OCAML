@@ -49,3 +49,4 @@ let map gr f =
     List.map f_graph gr
 ;;
 
+let size (gr:'a graph)=List.length gr 

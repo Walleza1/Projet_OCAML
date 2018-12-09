@@ -8,6 +8,3 @@ clean:
 
 test:
 	ocamlbuild test.byte && ./test.byte &&  make -s clean
-
-create_png:
-	ocamlbuild create_png.byte && ./create_png.byte &&  make -s clean

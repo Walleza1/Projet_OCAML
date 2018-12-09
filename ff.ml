@@ -284,7 +284,7 @@ let bellmand_ecart (gr:ford_ecart_graph) origin dest=
       loop [] dest
   in
   let update_next lis (id,pred,aval)=
-    Printf.printf "Node %s - \n%!" id;
+    (**Printf.printf "Node %s - \n%!" id;*)
     let output_arcs=out_arcs gr id
     in
     let rec loop acc arcs=match arcs with
@@ -293,7 +293,7 @@ let bellmand_ecart (gr:ford_ecart_graph) origin dest=
           in  
           let (_,actual_pred,actual_val)=find_node acc next_node_id
           in 
-            Printf.printf "Next_node %s cost %d ncost %d\n%!" next_node_id actual_val ncost ;
+            (**Printf.printf "Next_node %s cost %d ncost %d\n%!" next_node_id actual_val ncost ; *)
             if ncost < actual_val then
               loop (setval (next_node_id,id,ncost) acc) rest
             else
@@ -308,7 +308,7 @@ let bellmand_ecart (gr:ford_ecart_graph) origin dest=
   in
   let rec loop acc n=match n with
     | 0 -> acc
-    |k -> Printf.printf "__________\n%!" ;loop (update acc acc) (k-1)
+    |k -> (**Printf.printf "__________\n%!" ;*) loop (update acc acc) (k-1)
   in
   let final_hash=loop hash size_graph
   in

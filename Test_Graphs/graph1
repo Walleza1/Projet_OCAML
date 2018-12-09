@@ -1,0 +1,19 @@
+s Vincent
+s Jérôme
+s Didier
+
+c basket 2
+c tennis 2
+c golf 2
+
+p Vincent 1 tennis
+p Vincent 2 basket
+p Vincent 3 golf
+
+p Jérôme 1 golf
+p Jérôme 2 tennis
+p Jérôme 3 basket
+
+p Didier 1 tennis
+p Didier 2 golf
+p Didier 3 basket

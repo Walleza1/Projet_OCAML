@@ -15,5 +15,5 @@ let () =
   let gr =Ff.from_file_ford_graph infile
   in
   let res = Ff.run_max_flow_min_cost outfile gr in  
-  ()
+  Printf.printf "%d %!" res
  

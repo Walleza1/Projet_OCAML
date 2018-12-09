@@ -1,0 +1,20 @@
+strict digraph this_graph{
+rankdir=LR;
+size="8,5";
+graph [pad="0.5", nodesep="0.5", dpi = 800,ranksep="2"]node [shape=circle];
+tennis -> p [label = "2/2 : 1"];
+Vincent -> tennis [label = "1/1 : 1"];
+Vincent -> golf [label = "0/1 : 3"];
+Vincent -> basket [label = "0/1 : 2"];
+s -> Vincent [label = "1/1 : 1"];
+s -> Didier [label = "1/1 : 1"];
+s -> Jérôme [label = "1/1 : 1"];
+Didier -> tennis [label = "1/1 : 1"];
+Didier -> basket [label = "0/1 : 3"];
+Didier -> golf [label = "0/1 : 2"];
+golf -> p [label = "1/2 : 1"];
+Jérôme -> golf [label = "1/1 : 1"];
+Jérôme -> basket [label = "0/1 : 3"];
+Jérôme -> tennis [label = "0/1 : 2"];
+basket -> p [label = "0/2 : 1"];
+}

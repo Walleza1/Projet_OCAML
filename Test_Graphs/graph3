@@ -1,0 +1,206 @@
+s Jérôme
+s Vincent
+s Laura
+s Constance
+s Benjamin
+s Timothée
+s Lucien
+s Kapau
+s Maxime
+s Olivier
+s Jordan
+s Thomas
+s Gabrielle
+s Bruno
+s Quentin
+s Paul
+s Célia
+s Maxence
+s Pierre
+s Julien
+s Kim
+s Alicia
+s Xavier
+s Ilinka
+s Thibault
+s Marine
+s Eloïse
+s Fanny
+s Alexis
+s Cédric
+s Robin
+s Romain
+s Clément
+s Margot
+s Phatah
+s Justine
+s Lou
+s Manon
+s Tangi
+s Victor
+
+c escalade 10
+c rugby 10
+c karaté 10
+c badminton 10
+c fitness 10
+
+p Jérôme 1 badminton 
+p Jérôme 2 karaté
+p Jérôme 3 escalade
+
+p Vincent 1 rugby
+p Vincent 2 escalade
+p Vincent 3 fitness
+
+p Laura 1 fitness
+p Laura 2 badminton
+p Laura 3 karaté
+
+p Constance 1 rugby
+p Constance 2 escalade
+p Constance 3 karaté
+
+p Benjamin 1 fitness
+p Benjamin 2 badminton
+p Benjamin 3 escalade
+
+p Timothée 1 badminton
+p Timothée 2 rugby
+p Timothée 3 escalade
+
+p Lucien 1 fitness
+p Lucien 2 karaté
+p Lucien 3 escalade
+
+p Kapau 1 escalade
+p Kapau 2 fitness
+p Kapau 3 rugby
+
+p Maxime 1 rugby
+p Maxime 2 badminton
+p Maxime 3 karaté
+
+p Olivier 1 fitness
+p Olivier 2 badminton
+p Olivier 3 rugby
+
+p Jordan 1 badminton
+p Jordan 2 escalade
+p Jordan 3 fitness
+
+p Thomas 1 badminton
+p Thomas 2 karaté
+p Thomas 3 escalade
+
+p Gabrielle 1 escalade
+p Gabrielle 2 karaté
+p Gabrielle 3 rugby
+
+p Bruno 1 escalade
+p Bruno 2 badminton
+p Bruno 3 fitness
+
+p Quentin 1 escalade
+p Quentin 2 karaté
+p Quentin 3 badminton
+
+p Paul 1 karaté
+p Paul 2 badminton
+p Paul 3 fitness
+
+p Célia 1 escalade
+p Célia 2 fitness
+p Célia 3 badminton
+
+p Maxence 1 escalade
+p Maxence 2 badminton
+p Maxence 3 rugby
+
+p Pierre 1 badminton
+p Pierre 2 rugby
+p Pierre 3 escalade
+
+p Julien 1 escalade
+p Julien 2 fitness
+p Julien 3 karaté
+
+p Kim 1 escalade
+p Kim 2 fitness
+p Kim 3 rugby
+
+p Alicia 1 rugby
+p Alicia 2 karaté
+p Alicia 3 badminton
+
+p Xavier 1 escalade
+p Xavier 2 karaté
+p Xavier 3 rugby
+
+p Ilinka 1 fitness
+p Ilinka 2 karaté
+p Ilinka 3 badminton
+
+p Thibault 1 rugby
+p Thibault 2 fitness
+p Thibault 3 badminton
+
+p Marine 1 karaté
+p Marine 2 badminton
+p Marine 3 escalade
+
+p Eloïse 1 escalade
+p Eloïse 2 badminton
+p Eloïse 3 karaté
+
+p Fanny 1 badminton
+p Fanny 2 escalade
+p Fanny 3 fitness
+
+p Alexis 1 rugby
+p Alexis 2 escalade
+p Alexis 3 karaté
+
+p Cédric 1 escalade
+p Cédric 2 fitness
+p Cédric 3 karaté
+
+p Robin 1 karaté
+p Robin 2 fitness
+p Robin 3 escalade
+
+p Romain 1 fitness
+p Romain 2 escalade
+p Romain 3 rugby
+
+p Clément 1 rugby
+p Clément 2 badminton
+p Clément 3 karaté
+
+p Margot 1 karaté
+p Margot 2 rugby
+p Margot 3 badminton
+
+p Phatah 1 escalade
+p Phatah 2 rugby
+p Phatah 3 karaté
+
+p Justine 1 escalade
+p Justine 2 fitness
+p Justine 3 karaté
+
+p Lou 1 rugby
+p Lou 2 badminton
+p Lou 3 karaté
+
+p Manon 1 badminton
+p Manon 2 karaté
+p Manon 3 escalade
+
+p Tangi 1 fitness
+p Tangi 2 badminton
+p Tangi 3 rugby
+
+p Victor 1 badminton
+p Victor 2 escalade
+p Victor 3 karaté

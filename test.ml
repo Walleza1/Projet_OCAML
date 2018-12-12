@@ -25,6 +25,17 @@ let main ()=
 
 	test_run graph3 3 "Test_Graphs/graph3.dot" 40;
 	let ret3 = Sys.command("dot -Tpng Test_Graphs/graph3.dot > Test_Graphs/graph3.png") in
-	if ret3 <> 0 then Printf.printf("error converting to png\n")
-
+	if ret3 <> 0 then Printf.printf("error converting to png\n");
+	let load_file path =
+		let file = open_in path in
+		let rec loop gr =
+			try
+				let line = input_line file in
+				Printf.printf "%s\n" line;
+				loop gr
+			with End_of_file -> Printf.printf "%!";
+		in
+		loop []
+	in
+	load_file "test_result.txt"
 let ()= main ()
